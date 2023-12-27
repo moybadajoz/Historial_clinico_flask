@@ -1,0 +1,98 @@
+body {
+    background-color: #ddd;
+    font-size: 1.2em;
+}
+
+.page {
+    background-color: #fff;
+    margin: 20px 10% 20px 10%;
+    box-shadow: 0 2px 5px #ddd;
+    border-radius: 10px;
+    display: block;
+    min-height: 90vh;
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    display: table;
+}
+
+tr {
+    display: flex;
+    justify-content: space-evenly;
+    column-gap: 0;
+    height: 2.2em;
+    align-items: center;
+}
+
+tr:nth-child(even) {
+    background-color: #eee;
+}
+
+tr th {
+    width: 33%;
+}
+
+tr td {
+    width: 33%;
+    text-align: center;
+}
+
+.button {
+    border-radius: 13px;
+    margin-left: 2px;
+    margin-right: 2px;
+    border: none;
+    color: white;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 60px;
+    text-decoration: none;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+.edit {
+    background-color: rgb(43, 142, 248);
+}
+
+.new {
+    background-color: rgb(1, 170, 1);
+    text-align: center;
+}
+
+.delete {
+    background-color: rgb(202, 0, 0);
+}
+
+.edit:hover {
+    background-color: rgb(37, 112, 192);
+}
+
+.delete:hover {
+    background-color: rgb(161, 1, 1);
+}
+
+.new:hover {
+    background-color: green;
+}
+
+.search {
+    background-color: #eee;
+    border: 1px solid;
+    height: 2em;
+    border-radius: 30px;
+    padding-left: 10px;
+}
+
+.nav {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+}

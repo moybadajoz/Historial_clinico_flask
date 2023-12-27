@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block title %}Pacientes{% endblock title %} {%
+block content %}
+<div class="nav">
+  <input class="search" type="text" placeholder="Buscar" />
+  <a href="{{url_for('reg.nuevo')}}" class="button new">Nuevo</a>
+</div>
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Fecha</th>
+    <th>Acciones</th>
+  </tr>
+  {% for registro in registros %}
+  <tr>
+    <td>{{registro.nombre}}</td>
+    <td>{{registro.fecha}}</td>
+    <td>
+      <a class="button edit" href="{{url_for('reg.edit', id=registro.id)}}"
+        >Editar</a
+      >
+      <a class="button delete" href="#">Eliminar</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock content %}
