@@ -2,12 +2,12 @@ import sqlite3
 import click
 from flask import current_app, g
 from flask.cli import with_appcontext
-from .schema import instructions
+from .schema import instructions, migration_instructions
 
 
 def get_db():
     if 'db' not in g:
-        g.db = sqlite3.connect("app.db")
+        g.db = sqlite3.connect("database/database.db")
         g.db.row_factory = sqlite3.Row
         g.c = g.db.cursor()
 
@@ -36,6 +36,21 @@ def init_db_command():
     click.echo('Base de datos inicializada')
 
 
+@click.command('migrate')
+@click.option('--db_in')
+def migrate(db_in):
+    db, c = get_db()
+    dbin = sqlite3.connect(db_in)
+    cin = dbin.cursor()
+    registros = cin.execute(migration_instructions['select']).fetchall()
+    dbin.close()
+    for registro in registros:
+        c.execute(migration_instructions['insert'], registro)
+        db.commit()
+    db.close()
+
+
 def init_app(app):
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
+    app.cli.add_command(migrate)

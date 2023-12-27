@@ -1,9 +1,11 @@
-<link rel="stylesheet" href="{{url_for('static', filename='form.css')}}" />
+<link rel="stylesheet" href="{{url_for('static', filename='css/form.css')}}" />
 {% extends "base.html" %} {% block title %}Form{% endblock title %} {% block
 content %}
 <form method="post">
-  <h2>Historia clinica en fisioterapia</h2>
+  <h1>Historia clinica en fisioterapia</h1>
   <div class="datos">
+    <div class="space"></div>
+    <div class="space"></div>
     <div class="input dato fecha">
       <label for="fecha">Fecha</label>
       <input autocomplete: off type="date" value="{{registro.fecha}}"
@@ -18,6 +20,7 @@ content %}
         name="nombre"
         id="nombre"
         value="{{registro.nombre}}"
+        required
       />
     </div>
     <div class="input sexo">
@@ -81,48 +84,48 @@ content %}
       />
     </div>
   </div>
-  <h3>Antecedentes Personales No Patologicos</h3>
+  <h2>Antecedentes Personales No Patologicos</h2>
   <div class="apnp">
     <div class="input tabaquismo">
       <label for="tabaquismo">Tabaquismo</label>
       <textarea type="text" name="tabaquismo" id="tabaquismo">
-{{registro.tabaquismo}}</textarea
+      {{registro.tabaquismo}}</textarea
       >
     </div>
     <div class="input etilismo">
       <label for="Etilismo">Etilismo</label>
       <textarea type="text" name="etilismo" id="Etilismo">
-{{registro.etilismo}}</textarea
+      {{registro.etilismo}}</textarea
       >
     </div>
     <div class="input act_fis">
       <label for="act_fis">Actividad Fisica</label>
       <textarea type="text" name="act_fis" id="act_fis">
-{{registro.actividad}}</textarea
+      {{registro.actividad}}</textarea
       >
     </div>
     <div class="input">
       <label for="accesibilidad">Accesibilidad</label>
       <textarea type="text" name="accesibilidad" id="accesibilidad">
-{{registro.accesibilidad}}</textarea
+      {{registro.accesibilidad}}</textarea
       >
     </div>
     <div class="input">
       <label for="pasatiempos">Pasatiempos</label>
       <textarea type="text" name="pasatiempos" id="pasatiempos">
-{{registro.pasatiempos}}</textarea
+      {{registro.pasatiempos}}</textarea
       >
     </div>
     <div class="input">
       <label for="apnp_otros">Otros</label>
       <textarea type="text" name="apnp_otros" id="apnp_otros">
-{{registro.otros}}</textarea
+      {{registro.otros}}</textarea
       >
     </div>
   </div>
-  <h3>Antecedentes Personales Patologicos</h3>
+  <h2>Antecedentes Personales Patologicos</h2>
   <div class="app">
-    <div class="check">
+    <div class="check change">
       <div class="checkbox">
         <input
           type="checkbox"
@@ -139,9 +142,9 @@ content %}
         />
         <label for="dbt">DBT</label>
       </div>
-      <textarea name="dbt_text" id="dbt_text">{{registro.dbt}}</textarea>
+      <textarea name="dbt_text" id="dbt_text" hidden>{{registro.dbt}}</textarea>
     </div>
-    <div class="check">
+    <div class="check change">
       <div class="checkbox">
         <input
           type="checkbox"
@@ -158,9 +161,9 @@ content %}
         />
         <label for="hta">HTA</label>
       </div>
-      <textarea name="hta_text" id="hta_text">{{registro.hta}}</textarea>
+      <textarea name="hta_text" id="hta_text" hidden>{{registro.hta}}</textarea>
     </div>
-    <div class="check">
+    <div class="check change">
       <div class="checkbox">
         <input
           type="checkbox"
@@ -177,11 +180,11 @@ content %}
         />
         <label for="cancer">Cancer</label>
       </div>
-      <textarea name="cancer_text" id="cancer_text">
-{{registro.cancer}}</textarea
+      <textarea name="cancer_text" id="cancer_text" hidden>
+          {{registro.cancer}}</textarea
       >
     </div>
-    <div class="check">
+    <div class="check change">
       <div class="checkbox">
         <input
           type="checkbox"
@@ -198,11 +201,11 @@ content %}
         />
         <label for="transf">Transf.</label>
       </div>
-      <textarea name="transf_text" id="transf_text">
-{{registro.transf}}</textarea
+      <textarea name="transf_text" id="transf_text" hidden>
+        {{registro.transf}}</textarea
       >
     </div>
-    <div class="check">
+    <div class="check change">
       <div class="checkbox">
         <input
           type="checkbox"
@@ -219,9 +222,9 @@ content %}
         />
         <label for="cpt">CPT</label>
       </div>
-      <textarea name="cpt_text" id="cpt_text">{{registro.cpt}}</textarea>
+      <textarea name="cpt_text" id="cpt_text" hidden>{{registro.cpt}}</textarea>
     </div>
-    <div class="check">
+    <div class="check change">
       <div class="checkbox">
         <input
           type="checkbox"
@@ -238,11 +241,11 @@ content %}
         />
         <label for="alergia">Alergia</label>
       </div>
-      <textarea name="alergia_text" id="alergia_text">
-{{registro.alergia}}</textarea
+      <textarea name="alergia_text" id="alergia_text" hidden>
+      {{registro.alergia}}</textarea
       >
     </div>
-    <div class="check">
+    <div class="check change">
       <div class="checkbox">
         <input
           type="checkbox"
@@ -259,9 +262,11 @@ content %}
         />
         <label for="enfr">ENF.R.</label>
       </div>
-      <textarea name="enfr_text" id="enfr_text">{{registro.enfr}}</textarea>
+      <textarea name="enfr_text" id="enfr_text" hidden>
+      {{registro.enfr}}</textarea
+      >
     </div>
-    <div class="check">
+    <div class="check change">
       <div class="checkbox">
         <input
           type="checkbox"
@@ -278,9 +283,9 @@ content %}
         />
         <label for="fx">FX.</label>
       </div>
-      <textarea name="fx_text" id="fx_text">{{registro.fx}}</textarea>
+      <textarea name="fx_text" id="fx_text" hidden>{{registro.fx}}</textarea>
     </div>
-    <div class="check">
+    <div class="check change">
       <div class="checkbox">
         <input
           type="checkbox"
@@ -297,9 +302,9 @@ content %}
         />
         <label for="cx">CX.</label>
       </div>
-      <textarea name="cx_text" id="cx_text">{{registro.cx}}</textarea>
+      <textarea name="cx_text" id="cx_text" hidden>{{registro.cx}}</textarea>
     </div>
-    <div class="check">
+    <div class="check change">
       <div class="checkbox">
         <input
           type="checkbox"
@@ -316,358 +321,384 @@ content %}
         />
         <label for="sv">S.V.</label>
       </div>
-      <textarea name="sv_text" id="sv_text">{{registro.sv}}</textarea>
+      <textarea name="sv_text" id="sv_text" hidden>{{registro.sv}}</textarea>
     </div>
   </div>
-  <h3>DX. En rehabilitacion</h3>
-  <h4>Neurologico</h4>
-  <div class="neuro">
-    <div class="check">
+  <h2>DX. En rehabilitacion</h2>
+  <div class="rehabilitacion">
+    <h3>Neurologico</h3>
+    <div class="neuro">
+      <div class="check">
+        <div class="checkbox">
+          <input
+            type="checkbox"
+            name="reflejos"
+            id="reflejos"
+            {%
+            if
+            registro.reflejos
+            %}
+            checked
+            {%
+            endif
+            %}
+          />
+          <label for="reflejos">Reflejos</label>
+        </div>
+      </div>
+      <div class="check">
+        <div class="checkbox">
+          <input
+            type="checkbox"
+            name="sensibilidad"
+            id="sensibilidad"
+            {%
+            if
+            registro.sensibilidad
+            %}
+            checked
+            {%
+            endif
+            %}
+          />
+          <label for="sensibilidad">Sensibilidad</label>
+        </div>
+      </div>
+      <div class="check">
+        <div class="checkbox">
+          <input
+            type="checkbox"
+            name="lenguaje"
+            id="lenguaje"
+            {%
+            if
+            registro.lenguaje
+            %}
+            checked
+            {%
+            endif
+            %}
+          />
+          <label for="lenguaje">Lenguaje</label>
+        </div>
+      </div>
+      <div class="check change">
+        <div class="checkbox">
+          <input
+            type="checkbox"
+            name="n_otros"
+            id="n_otros"
+            {%
+            if
+            registro.Notros
+            %}
+            checked
+            {%
+            endif
+            %}
+          />
+          <label for="n_otros">Otros</label>
+        </div>
+        <textarea name="n_otros" id="n_otros" hidden>
+{{registro.Notros}}</textarea
+        >
+      </div>
+    </div>
+    <h3>Contractura muscular</h3>
+    <div class="contractura">
+      <label for="contractura">Sitio</label>
       <input
-        type="checkbox"
-        name="reflejos"
-        id="reflejos"
-        {%
-        if
-        registro.reflejos
-        %}
-        checked
-        {%
-        endif
-        %}
+        autocomplete="off"
+        type="text"
+        name="contractura"
+        id="contractura"
+        value="{{registro.contractura}}"
       />
-      <label for="reflejos">Reflejos</label>
     </div>
-    <div class="check">
-      <input
-        type="checkbox"
-        name="sensibilidad"
-        id="sensibilidad"
-        {%
-        if
-        registro.sensibilidad
-        %}
-        checked
-        {%
-        endif
-        %}
-      />
-      <label for="sensibilidad">Sensibilidad</label>
+    <h3>Marcha</h3>
+    <div class="marcha">
+      <div class="check">
+        <div class="checkbox">
+          <input
+            type="checkbox"
+            name="libre"
+            id="libre"
+            {%
+            if
+            registro.libre
+            %}
+            checked
+            {%
+            endif
+            %}
+          />
+          <label for="libre">Libre</label>
+        </div>
+      </div>
+      <div class="check">
+        <div class="checkbox">
+          <input
+            type="checkbox"
+            name="claudicante"
+            id="claudicante"
+            {%
+            if
+            registro.claudicante
+            %}
+            checked
+            {%
+            endif
+            %}
+          />
+          <label for="claudicante">Claudicante</label>
+        </div>
+      </div>
+      <div class="check">
+        <div class="checkbox">
+          <input
+            type="checkbox"
+            name="ayuda"
+            id="ayuda"
+            {%
+            if
+            registro.Mayuda
+            %}
+            checked
+            {%
+            endif
+            %}
+          />
+          <label for="ayuda">Con ayuda</label>
+        </div>
+      </div>
+      <div class="check">
+        <div class="checkbox">
+          <input
+            type="checkbox"
+            name="espastica"
+            id="espastica"
+            {%
+            if
+            registro.espastica
+            %}
+            checked
+            {%
+            endif
+            %}
+          />
+          <label for="espastica">Espastica</label>
+        </div>
+      </div>
+      <div class="check">
+        <div class="checkbox">
+          <input
+            type="checkbox"
+            name="ataxica"
+            id="ataxica"
+            {%
+            if
+            registro.ataxica
+            %}
+            checked
+            {%
+            endif
+            %}
+          />
+          <label for="ataxica">Ataxica</label>
+        </div>
+      </div>
+      <div class="check change">
+        <div class="checkbox">
+          <input
+            type="checkbox"
+            name="libre"
+            id="libre"
+            {%
+            if
+            registro.Motra
+            %}
+            checked
+            {%
+            endif
+            %}
+          />
+          <label for="libre">Otro</label>
+        </div>
+        <textarea name="marcha_otro" id="marcha_otro" hidden>
+        {{registro.Motra}}</textarea
+        >
+      </div>
     </div>
-    <div class="check">
-      <input
-        type="checkbox"
-        name="lenguaje"
-        id="lenguaje"
-        {%
-        if
-        registro.lenguaje
-        %}
-        checked
-        {%
-        endif
-        %}
-      />
-      <label for="lenguaje">Lenguaje</label>
+    <h3>Traslados</h3>
+    <div class="traslados">
+      <h4>Val. Inicial</h4>
+      <div class="vi">
+        <div class="check">
+          <input
+            type="checkbox"
+            name="vi_independiente"
+            id="vi_independiente"
+            {%
+            if
+            registro.Iindependiente
+            %}
+            checked
+            {%
+            endif
+            %}
+          />
+          <label for="vi_independiente">Independiente</label>
+        </div>
+        <div class="check">
+          <input
+            type="checkbox"
+            name="vi_ayuda"
+            id="vi_ayuda"
+            {%
+            if
+            registro.Iayuda
+            %}
+            checked
+            {%
+            endif
+            %}
+          />
+          <label for="vi_ayuda">Con ayuda</label>
+        </div>
+        <div class="check">
+          <input
+            type="checkbox"
+            name="vi_silla"
+            id="vi_silla"
+            {%
+            if
+            registro.Isilla
+            %}
+            checked
+            {%
+            endif
+            %}
+          />
+          <label for="vi_silla">Silla de ruedas</label>
+        </div>
+        <div class="check">
+          <input
+            type="checkbox"
+            name="vi_camilla"
+            id="vi_camilla"
+            {%
+            if
+            registro.Icamilla
+            %}
+            checked
+            {%
+            endif
+            %}
+          />
+          <label for="vi_camilla">Camilla</label>
+        </div>
+      </div>
+      <h4>Val. Final</h4>
+      <div class="vf">
+        <div class="check">
+          <input
+            type="checkbox"
+            name="vf_independiente"
+            id="vf_independiente"
+            {%
+            if
+            registro.Findependiente
+            %}
+            checked
+            {%
+            endif
+            %}
+          />
+          <label for="vf_independiente">Independiente</label>
+        </div>
+        <div class="check">
+          <input
+            type="checkbox"
+            name="vf_ayuda"
+            id="vf_ayuda"
+            {%
+            if
+            registro.Fayuda
+            %}
+            checked
+            {%
+            endif
+            %}
+          />
+          <label for="vf_ayuda">Con ayuda</label>
+        </div>
+        <div class="check">
+          <input
+            type="checkbox"
+            name="vf_silla"
+            id="vf_silla"
+            {%
+            if
+            registro.Fsilla
+            %}
+            checked
+            {%
+            endif
+            %}
+          />
+          <label for="vf_silla">Silla de ruedas</label>
+        </div>
+        <div class="check">
+          <input
+            type="checkbox"
+            name="vf_camilla"
+            id="vf_camilla"
+            {%
+            if
+            registro.Fcamilla
+            %}
+            checked
+            {%
+            endif
+            %}
+          />
+          <label for="vf_camilla">Camilla</label>
+        </div>
+      </div>
     </div>
-    <div class="check">
-      <input
-        type="checkbox"
-        name="n_otros"
-        id="n_otros"
-        {%
-        if
-        registro.Notros
-        %}
-        checked
-        {%
-        endif
-        %}
-      />
-      <label for="n_otros">Otros</label>
-      <textarea name="n_otros" id="n_otros">{{registro.Notros}}</textarea>
+    <h3>Dolor</h3>
+    <div class="dolor">
+      <div class="input">
+        <label for="d_sitio">Sitio</label>
+        <textarea name="d_sitio" id="d_sitio">{{registro.Dsitio}}</textarea>
+      </div>
+      <div class="input">
+        <label for="irradiacion">Irradiacion</label>
+        <textarea name="irradiacion" id="irradiacion">
+        {{registro.irradiacion}}</textarea
+        >
+      </div>
+      <div class="input">
+        <label for="inicial">Inicial</label>
+        <textarea name="inicial" id="inicial">{{registro.Dinicial}}</textarea>
+      </div>
+      <div class="input">
+        <label for="final">Final</label>
+        <textarea name="final" id="final">{{registro.Dfinal}}</textarea>
+      </div>
+      <div class="input">
+        <label for="d_observaciones">Observaciones</label>
+        <textarea name="d_observaciones" id="d_observaciones">
+      {{registro.Dobservaciones}}</textarea
+        >
+      </div>
+      <img src="{{url_for('static',filename='assets/img.png')}}" />
     </div>
-  </div>
-  <h4>Contractura muscular</h4>
-  <div class="contractura">
-    <label for="contractura">Sitio</label>
-    <input
-      autocomplete="off"
-      type="text"
-      name="contractura"
-      id="contractura"
-      value="{{registro.contractura}}"
-    />
-  </div>
-  <h4>Marcha</h4>
-  <div class="marcha">
-    <div class="check">
-      <input
-        type="checkbox"
-        name="libre"
-        id="libre"
-        {%
-        if
-        registro.libre
-        %}
-        checked
-        {%
-        endif
-        %}
-      />
-      <label for="libre">Libre</label>
-    </div>
-    <div class="check">
-      <input
-        type="checkbox"
-        name="claudicante"
-        id="claudicante"
-        {%
-        if
-        registro.claudicante
-        %}
-        checked
-        {%
-        endif
-        %}
-      />
-      <label for="claudicante">Claudicante</label>
-    </div>
-    <div class="check">
-      <input
-        type="checkbox"
-        name="ayuda"
-        id="ayuda"
-        {%
-        if
-        registro.Mayuda
-        %}
-        checked
-        {%
-        endif
-        %}
-      />
-      <label for="ayuda">Con ayuda</label>
-    </div>
-    <div class="check">
-      <input
-        type="checkbox"
-        name="espastica"
-        id="espastica"
-        {%
-        if
-        registro.espastica
-        %}
-        checked
-        {%
-        endif
-        %}
-      />
-      <label for="espastica">Espastica</label>
-    </div>
-    <div class="check">
-      <input
-        type="checkbox"
-        name="ataxica"
-        id="ataxica"
-        {%
-        if
-        registro.ataxica
-        %}
-        checked
-        {%
-        endif
-        %}
-      />
-      <label for="ataxica">Ataxica</label>
-    </div>
-    <div class="check">
-      <input
-        type="checkbox"
-        name="libre"
-        id="libre"
-        {%
-        if
-        registro.Motra
-        %}
-        checked
-        {%
-        endif
-        %}
-      />
-      <label for="libre">Otro</label>
-      <textarea name="marcha_otro" id="marcha_otro">
-{{registro.Motra}}</textarea
-      >
-    </div>
-  </div>
-  <h4>Traslados</h4>
-  <h5>Val. Inicial</h5>
-  <div class="vi">
-    <div class="check">
-      <input
-        type="checkbox"
-        name="vi_independiente"
-        id="vi_independiente"
-        {%
-        if
-        registro.Iindependiente
-        %}
-        checked
-        {%
-        endif
-        %}
-      />
-      <label for="vi_independiente">Independiente</label>
-    </div>
-    <div class="check">
-      <input
-        type="checkbox"
-        name="vi_ayuda"
-        id="vi_ayuda"
-        {%
-        if
-        registro.Iayuda
-        %}
-        checked
-        {%
-        endif
-        %}
-      />
-      <label for="vi_ayuda">Con ayuda</label>
-    </div>
-    <div class="check">
-      <input
-        type="checkbox"
-        name="vi_silla"
-        id="vi_silla"
-        {%
-        if
-        registro.Isilla
-        %}
-        checked
-        {%
-        endif
-        %}
-      />
-      <label for="vi_silla">Silla de ruedas</label>
-    </div>
-    <div class="check">
-      <input
-        type="checkbox"
-        name="vi_camilla"
-        id="vi_camilla"
-        {%
-        if
-        registro.Icamilla
-        %}
-        checked
-        {%
-        endif
-        %}
-      />
-      <label for="vi_camilla">Camilla</label>
-    </div>
-  </div>
-  <h5>Val. Final</h5>
-  <div class="vf">
-    <div class="check">
-      <input
-        type="checkbox"
-        name="vf_independiente"
-        id="vf_independiente"
-        {%
-        if
-        registro.Findependiente
-        %}
-        checked
-        {%
-        endif
-        %}
-      />
-      <label for="vf_independiente">Independiente</label>
-    </div>
-    <div class="check">
-      <input
-        type="checkbox"
-        name="vf_ayuda"
-        id="vf_ayuda"
-        {%
-        if
-        registro.Fayuda
-        %}
-        checked
-        {%
-        endif
-        %}
-      />
-      <label for="vf_ayuda">Con ayuda</label>
-    </div>
-    <div class="check">
-      <input
-        type="checkbox"
-        name="vf_silla"
-        id="vf_silla"
-        {%
-        if
-        registro.Fsilla
-        %}
-        checked
-        {%
-        endif
-        %}
-      />
-      <label for="vf_silla">Silla de ruedas</label>
-    </div>
-    <div class="check">
-      <input
-        type="checkbox"
-        name="vf_camilla"
-        id="vf_camilla"
-        {%
-        if
-        registro.Fcamilla
-        %}
-        checked
-        {%
-        endif
-        %}
-      />
-      <label for="vf_camilla">Camilla</label>
-    </div>
-  </div>
-  <h4>Dolor</h4>
-  <div class="dolor">
-    <div class="input">
-      <label for="d_sitio">Sitio</label>
-      <textarea name="d_sitio" id="d_sitio">{{registro.Dsitio}}</textarea>
-    </div>
-    <div class="input">
-      <label for="irradiacion">Irradiacion</label>
-      <textarea name="irradiacion" id="irradiacion">
-{{registro.irradiacion}}</textarea
-      >
-    </div>
-    <div class="input">
-      <label for="inicial">Inicial</label>
-      <textarea name="inicial" id="inicial">{{registro.Dinicial}}</textarea>
-    </div>
-    <div class="input">
-      <label for="final">Final</label>
-      <textarea name="final" id="final">{{registro.Dfinal}}</textarea>
-    </div>
-    <div class="input">
-      <label for="d_observaciones">Observaciones</label>
-      <textarea name="d_observaciones" id="d_observaciones">
-{{registro.Dobservaciones}}</textarea
-      >
-    </div>
-    <img src="{{url_for('static',filename='assets/img.png')}}" />
   </div>
   <div class="ultimos">
     <h3>Antecedentes en fisioterapia</h3>
     <textarea name="antecedentes" id="antecedentes">
-{{registro.antecedentes}}</textarea
+    {{registro.antecedentes}}</textarea
     >
     <h3>Motivo de la consulta</h3>
     <textarea name="motivo" id="motivo">{{registro.motivo}}</textarea>
@@ -675,11 +706,11 @@ content %}
     <textarea name="relato" id="relato">{{registro.resumen}}</textarea>
     <h3>Diagnostico fisioterapeutico</h3>
     <textarea name="diagnostico" id="diagnostico">
-{{registro.diagnostico}}</textarea
+    {{registro.diagnostico}}</textarea
     >
     <h3>Observaciones</h3>
     <textarea name="observaciones" id="observaciones">
-{{registro.observaciones}}</textarea
+    {{registro.observaciones}}</textarea
     >
     <h3>Plan de tratamiento</h3>
     <textarea name="plan" id="plan">{{registro.plan}}</textarea>
@@ -691,4 +722,5 @@ content %}
     <button type="submit">Guardar</button>
   </div>
 </form>
+<script src="{{url_for('static', filename='js/script.js')}}"></script>
 {% endblock content %}
