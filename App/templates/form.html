@@ -4,22 +4,32 @@ content %}
 <form method="post">
   <h1>Historia clinica en fisioterapia</h1>
   <div class="datos">
-    <div class="space"></div>
-    <div class="space"></div>
+    <div class="space"> </div>
+    <div class="space">
+      {% if registro.id %}
+      <input type="text" name="id" value={{registro.id}} hidden>
+      {% endif %}
+    </div>
     <div class="input dato fecha">
       <label for="fecha">Fecha</label>
-      <input autocomplete: off type="date" value="{{registro.fecha}}"
-      pattern="\d{4}-\d{2}-\d{4}" class="form-control" id="fecha" name="fecha"
-      required />
+      <input 
+        autocomplete: "off"
+        type="date" 
+        value="{{registro.datos_fecha}}"
+        class="form-control" 
+        id="fecha" 
+        name="datos_fecha"
+        required 
+      />
     </div>
     <div class="input nombre">
       <label for="nombre">Nombre</label>
       <input
         autocomplete="off"
         type="text"
-        name="nombre"
+        name="datos_nombre"
         id="nombre"
-        value="{{registro.nombre}}"
+        value="{{registro.datos_nombre}}"
         required
       />
     </div>
@@ -28,9 +38,9 @@ content %}
       <input
         autocomplete="off"
         type="text"
-        name="sexo"
+        name="datos_sexo"
         id="sexo"
-        value="{{registro.sexo}}"
+        value="{{registro.datos_sexo}}"
       />
     </div>
     <div class="input edad">
@@ -38,9 +48,9 @@ content %}
       <input
         autocomplete="off"
         type="number"
-        name="edad"
+        name="datos_edad"
         id="edad"
-        value="{{registro.edad}}"
+        value="{{registro.datos_edad}}"
       />
     </div>
     <div class="input tel">
@@ -48,9 +58,9 @@ content %}
       <input
         autocomplete="off"
         type="number"
-        name="telefono"
+        name="datos_telefono"
         id="telefono"
-        value="{{registro.telefono}}"
+        value="{{registro.datos_telefono}}"
       />
     </div>
     <div class="input ocupacion">
@@ -58,9 +68,9 @@ content %}
       <input
         autocomplete="off"
         type="text"
-        name="ocupacion"
+        name="datos_ocupacion"
         id="ocupacion"
-        value="{{registro.ocupacion}}"
+        value="{{registro.datos_ocupacion}}"
       />
     </div>
     <div class="input estado">
@@ -68,9 +78,9 @@ content %}
       <input
         autocomplete="off"
         type="text"
-        name="estado"
+        name="datos_estado"
         id="estado"
-        value="{{registro.estadoC}}"
+        value="{{registro.datos_estado}}"
       />
     </div>
     <div class="input nacimiento">
@@ -78,9 +88,9 @@ content %}
       <input
         autocomplete="off"
         type="text"
-        name="nacimiento"
+        name="datos_nacimiento"
         id="nacimiento"
-        value="{{registro.nacimiento}}"
+        value="{{registro.datos_nacimiento}}"
       />
     </div>
   </div>
@@ -88,39 +98,33 @@ content %}
   <div class="apnp">
     <div class="input tabaquismo">
       <label for="tabaquismo">Tabaquismo</label>
-      <textarea type="text" name="tabaquismo" id="tabaquismo">
-      {{registro.tabaquismo}}</textarea
-      >
+      <textarea type="text" name="apnp_tabaquismo" id="tabaquismo"
+      >{{registro.apnp_tabaquismo}}</textarea>
     </div>
     <div class="input etilismo">
       <label for="Etilismo">Etilismo</label>
-      <textarea type="text" name="etilismo" id="Etilismo">
-      {{registro.etilismo}}</textarea
-      >
+      <textarea type="text" name="apnp_etilismo" id="Etilismo"
+      >{{registro.apnp_etilismo}}</textarea>
     </div>
     <div class="input act_fis">
       <label for="act_fis">Actividad Fisica</label>
-      <textarea type="text" name="act_fis" id="act_fis">
-      {{registro.actividad}}</textarea
-      >
+      <textarea type="text" name="apnp_actividad" id="act_fis"
+      >{{registro.apnp_actividad}}</textarea>
     </div>
     <div class="input">
       <label for="accesibilidad">Accesibilidad</label>
-      <textarea type="text" name="accesibilidad" id="accesibilidad">
-      {{registro.accesibilidad}}</textarea
-      >
+      <textarea type="text" name="apnp_accesibilidad" id="accesibilidad"
+      >{{registro.apnp_accesibilidad}}</textarea>
     </div>
     <div class="input">
       <label for="pasatiempos">Pasatiempos</label>
-      <textarea type="text" name="pasatiempos" id="pasatiempos">
-      {{registro.pasatiempos}}</textarea
-      >
+      <textarea type="text" name="apnp_pasatiempos" id="pasatiempos"
+      >{{registro.apnp_pasatiempos}}</textarea>
     </div>
     <div class="input">
       <label for="apnp_otros">Otros</label>
-      <textarea type="text" name="apnp_otros" id="apnp_otros">
-      {{registro.otros}}</textarea
-      >
+      <textarea type="text" name="apnp_otros" id="apnp_otros"
+      >{{registro.apnp_otros}}</textarea>
     </div>
   </div>
   <h2>Antecedentes Personales Patologicos</h2>
@@ -130,198 +134,200 @@ content %}
         <input
           type="checkbox"
           id="dbt"
-          name="dbt"
-          {%
-          if
-          registro.dbt
-          %}
+          name="app_dbt_check"
+          {% if registro.app_dbt_check %}
           checked
-          {%
-          endif
-          %}
+          {% endif %}
         />
         <label for="dbt">DBT</label>
       </div>
-      <textarea name="dbt_text" id="dbt_text" hidden>{{registro.dbt}}</textarea>
+      <textarea 
+        name="app_dbt_text" 
+        id="dbt_text" 
+        {% if not registro.app_dbt_check %}
+        hidden
+        {% endif %}
+      >{{registro.app_dbt_text}}</textarea>
     </div>
     <div class="check change">
       <div class="checkbox">
         <input
           type="checkbox"
           id="hta"
-          name="hta"
-          {%
-          if
-          registro.hta
-          %}
+          name="app_hta_check"
+          {% if registro.app_hta_check %}
           checked
-          {%
-          endif
-          %}
+          {% endif %}
         />
         <label for="hta">HTA</label>
       </div>
-      <textarea name="hta_text" id="hta_text" hidden>{{registro.hta}}</textarea>
+      <textarea 
+        name="app_hta_text" 
+        id="hta_text" 
+        {% if not registro.app_hta_check %}
+        hidden
+        {% endif %}
+      >{{registro.app_hta_text}}</textarea>
     </div>
     <div class="check change">
       <div class="checkbox">
         <input
           type="checkbox"
           id="cancer"
-          name="cancer"
-          {%
-          if
-          registro.cancer
-          %}
+          name="app_cancer_check"
+          {% if registro.app_cancer_check %}
           checked
-          {%
-          endif
-          %}
+          {% endif %}
         />
         <label for="cancer">Cancer</label>
       </div>
-      <textarea name="cancer_text" id="cancer_text" hidden>
-          {{registro.cancer}}</textarea
-      >
+      <textarea 
+        name="app_cancer_text" 
+        id="cancer_text" 
+        {% if not registro.app_cancer_check %}
+        hidden
+        {% endif %}
+      >{{registro.app_cancer_text}}</textarea>
     </div>
     <div class="check change">
       <div class="checkbox">
         <input
           type="checkbox"
           id="transf"
-          name="transf"
-          {%
-          if
-          registro.transf
-          %}
+          name="app_transf_check"
+          {% if registro.app_transf_check%}
           checked
-          {%
-          endif
-          %}
+          {% endif %}
         />
         <label for="transf">Transf.</label>
       </div>
-      <textarea name="transf_text" id="transf_text" hidden>
-        {{registro.transf}}</textarea
-      >
+      <textarea
+        name="app_transf_text"
+        id="transf_text"
+        {% if not registro.app_transf_check %}
+        hidden
+        {% endif %}
+      >{{registro.app_transf_text}}</textarea>
     </div>
     <div class="check change">
       <div class="checkbox">
         <input
           type="checkbox"
           id="cpt"
-          name="cpt"
-          {%
-          if
-          registro.cpt
-          %}
+          name="app_cpt_check"
+          {% if registro.app_cpt_check %}
           checked
-          {%
-          endif
-          %}
+          {% endif %}
         />
         <label for="cpt">CPT</label>
       </div>
-      <textarea name="cpt_text" id="cpt_text" hidden>{{registro.cpt}}</textarea>
+      <textarea
+        name="app_cpt_text" 
+        id="cpt_text" 
+        {% if not registro.app_cpt_check %}
+        hidden
+        {% endif %}
+        >{{registro.app_cpt_text}}</textarea>
     </div>
     <div class="check change">
       <div class="checkbox">
         <input
           type="checkbox"
           id="alergia"
-          name="alergia"
-          {%
-          if
-          registro.alergia
-          %}
+          name="app_alergia_check"
+          {% if registro.app_alergia_check %}
           checked
-          {%
-          endif
-          %}
+          {% endif %}
         />
         <label for="alergia">Alergia</label>
       </div>
-      <textarea name="alergia_text" id="alergia_text" hidden>
-      {{registro.alergia}}</textarea
-      >
+      <textarea 
+        name="app_alergia_text" 
+        id="alergia_text" 
+        {% if not registro.app_alergia_check %}
+        hidden
+        {% endif %}
+      >{{registro.app_alergia_text}}</textarea>
     </div>
     <div class="check change">
       <div class="checkbox">
         <input
           type="checkbox"
           id="enfr"
-          name="enfr"
-          {%
-          if
-          registro.enfr
-          %}
+          name="app_enfr_check"
+          {% if registro.app_enfr_check %}
           checked
-          {%
-          endif
-          %}
+          {% endif %}
         />
         <label for="enfr">ENF.R.</label>
       </div>
-      <textarea name="enfr_text" id="enfr_text" hidden>
-      {{registro.enfr}}</textarea
-      >
+      <textarea 
+        name="app_enfr_text" 
+        id="enfr_text" 
+        {% if not registro.app_enfr_check %}
+        hidden
+        {% endif %}
+      >{{registro.app_enfr_text}}</textarea>
     </div>
     <div class="check change">
       <div class="checkbox">
         <input
           type="checkbox"
           id="fx"
-          name="fx"
-          {%
-          if
-          registro.fx
-          %}
+          name="app_fx_check"
+          {% if registro.app_fx_check %}
           checked
-          {%
-          endif
-          %}
+          {% endif %}
         />
         <label for="fx">FX.</label>
       </div>
-      <textarea name="fx_text" id="fx_text" hidden>{{registro.fx}}</textarea>
+      <textarea 
+        name="app_fx_text" 
+        id="fx_text" 
+        {% if not registro.app_fx_check %}
+        hidden
+        {% endif %}
+        >{{registro.app_fx_text}}</textarea>
     </div>
     <div class="check change">
       <div class="checkbox">
         <input
           type="checkbox"
           id="cx"
-          name="cx"
-          {%
-          if
-          registro.cx
-          %}
+          name="app_cx_check"
+          {% if registro.app_cx_check %}
           checked
-          {%
-          endif
-          %}
+          {% endif %}
         />
         <label for="cx">CX.</label>
       </div>
-      <textarea name="cx_text" id="cx_text" hidden>{{registro.cx}}</textarea>
+      <textarea 
+        name="app_cx_text" 
+        id="cx_text" 
+        {% if not registro.app_sv_check %}
+        hidden
+        {% endif %}
+        >{{registro.app_cx_text}}</textarea>
     </div>
     <div class="check change">
       <div class="checkbox">
         <input
           type="checkbox"
           id="sv"
-          name="sv"
-          {%
-          if
-          registro.sv
-          %}
+          name="app_sv_check"
+          {% if registro.app_sv_check %}
           checked
-          {%
-          endif
-          %}
+          {% endif %}
         />
         <label for="sv">S.V.</label>
       </div>
-      <textarea name="sv_text" id="sv_text" hidden>{{registro.sv}}</textarea>
+      <textarea 
+        name="app_sv_text" 
+        id="sv_text" 
+        {% if not registro.app_sv_check %}
+        hidden
+        {% endif %}
+        >{{registro.app_sv_text}}</textarea>
     </div>
   </div>
   <h2>DX. En rehabilitacion</h2>
@@ -332,16 +338,11 @@ content %}
         <div class="checkbox">
           <input
             type="checkbox"
-            name="reflejos"
+            name="neuro_reflejos_check"
             id="reflejos"
-            {%
-            if
-            registro.reflejos
-            %}
+            {% if registro.neuro_reflejos_check %}
             checked
-            {%
-            endif
-            %}
+            {% endif %}
           />
           <label for="reflejos">Reflejos</label>
         </div>
@@ -350,16 +351,11 @@ content %}
         <div class="checkbox">
           <input
             type="checkbox"
-            name="sensibilidad"
+            name="neuro_sensibilidad_check"
             id="sensibilidad"
-            {%
-            if
-            registro.sensibilidad
-            %}
+            {% if registro.neuro_sensibilidad_check %}
             checked
-            {%
-            endif
-            %}
+            {% endif %}
           />
           <label for="sensibilidad">Sensibilidad</label>
         </div>
@@ -368,16 +364,11 @@ content %}
         <div class="checkbox">
           <input
             type="checkbox"
-            name="lenguaje"
+            name="neuro_lenguaje_check"
             id="lenguaje"
-            {%
-            if
-            registro.lenguaje
-            %}
+            {% if registro.neuro_lenguaje_check %}
             checked
-            {%
-            endif
-            %}
+            {% endif %}
           />
           <label for="lenguaje">Lenguaje</label>
         </div>
@@ -386,22 +377,21 @@ content %}
         <div class="checkbox">
           <input
             type="checkbox"
-            name="n_otros"
+            name="neuro_otros_check"
             id="n_otros"
-            {%
-            if
-            registro.Notros
-            %}
+            {% if registro.neuro_otros_check %}
             checked
-            {%
-            endif
-            %}
+            {% endif %}
           />
-          <label for="n_otros">Otros</label>
+          <label for="neuro_otros">Otros</label>
         </div>
-        <textarea name="n_otros" id="n_otros" hidden>
-{{registro.Notros}}</textarea
-        >
+        <textarea 
+          name="neuro_otros_text" 
+          id="neuro_otros" 
+          {% if not registro.neuro_otros_check %}
+          hidden
+          {% endif %}
+          >{{registro.neuro_otros_text}}</textarea>
       </div>
     </div>
     <h3>Contractura muscular</h3>
@@ -410,9 +400,9 @@ content %}
       <input
         autocomplete="off"
         type="text"
-        name="contractura"
+        name="contractura_sitio"
         id="contractura"
-        value="{{registro.contractura}}"
+        value="{{registro.contractura_sitio}}"
       />
     </div>
     <h3>Marcha</h3>
@@ -421,16 +411,11 @@ content %}
         <div class="checkbox">
           <input
             type="checkbox"
-            name="libre"
+            name="marcha_libre_check"
             id="libre"
-            {%
-            if
-            registro.libre
-            %}
+            {% if registro.marcha_libre_check %}
             checked
-            {%
-            endif
-            %}
+            {% endif %}
           />
           <label for="libre">Libre</label>
         </div>
@@ -439,16 +424,11 @@ content %}
         <div class="checkbox">
           <input
             type="checkbox"
-            name="claudicante"
+            name="marcha_claudicante_check"
             id="claudicante"
-            {%
-            if
-            registro.claudicante
-            %}
+            {% if registro.marcha_claudicante_check %}
             checked
-            {%
-            endif
-            %}
+            {% endif %}
           />
           <label for="claudicante">Claudicante</label>
         </div>
@@ -457,16 +437,11 @@ content %}
         <div class="checkbox">
           <input
             type="checkbox"
-            name="ayuda"
+            name="marcha_ayuda_check"
             id="ayuda"
-            {%
-            if
-            registro.Mayuda
-            %}
+            {% if registro.marcha_ayuda_check %}
             checked
-            {%
-            endif
-            %}
+            {% endif %}
           />
           <label for="ayuda">Con ayuda</label>
         </div>
@@ -475,16 +450,11 @@ content %}
         <div class="checkbox">
           <input
             type="checkbox"
-            name="espastica"
+            name="marcha_espastica_check"
             id="espastica"
-            {%
-            if
-            registro.espastica
-            %}
+            {% if registro.marcha_espastica_check %}
             checked
-            {%
-            endif
-            %}
+            {% endif %}
           />
           <label for="espastica">Espastica</label>
         </div>
@@ -493,16 +463,11 @@ content %}
         <div class="checkbox">
           <input
             type="checkbox"
-            name="ataxica"
+            name="marcha_ataxica_check"
             id="ataxica"
-            {%
-            if
-            registro.ataxica
-            %}
+            {% if registro.marcha_ataxica_check %}
             checked
-            {%
-            endif
-            %}
+            {% endif %}
           />
           <label for="ataxica">Ataxica</label>
         </div>
@@ -511,22 +476,21 @@ content %}
         <div class="checkbox">
           <input
             type="checkbox"
-            name="libre"
-            id="libre"
-            {%
-            if
-            registro.Motra
-            %}
+            name="marcha_otro_check"
+            id="m_otro"
+            {% if registro.marcha_otro_check %}
             checked
-            {%
-            endif
-            %}
+            {% endif %}
           />
-          <label for="libre">Otro</label>
+          <label for="m_otro">Otro</label>
         </div>
-        <textarea name="marcha_otro" id="marcha_otro" hidden>
-        {{registro.Motra}}</textarea
-        >
+        <textarea 
+          name="marcha_otro_text" 
+          id="marcha_otro" 
+          {% if not registro.marcha_otro_check %}
+          hidden
+          {% endif %}
+          >{{registro.marcha_otro_text}}</textarea>
       </div>
     </div>
     <h3>Traslados</h3>
@@ -536,64 +500,44 @@ content %}
         <div class="check">
           <input
             type="checkbox"
-            name="vi_independiente"
+            name="vi_independiente_check"
             id="vi_independiente"
-            {%
-            if
-            registro.Iindependiente
-            %}
+            {% if registro.vi_independiente_check %}
             checked
-            {%
-            endif
-            %}
+            {% endif %}
           />
           <label for="vi_independiente">Independiente</label>
         </div>
         <div class="check">
           <input
             type="checkbox"
-            name="vi_ayuda"
+            name="vi_ayuda_check"
             id="vi_ayuda"
-            {%
-            if
-            registro.Iayuda
-            %}
+            {% if registro.vi_ayuda_check %}
             checked
-            {%
-            endif
-            %}
+            {% endif %}
           />
           <label for="vi_ayuda">Con ayuda</label>
         </div>
         <div class="check">
           <input
             type="checkbox"
-            name="vi_silla"
+            name="vi_silla_check"
             id="vi_silla"
-            {%
-            if
-            registro.Isilla
-            %}
+            {% if registro.vi_silla_check %}
             checked
-            {%
-            endif
-            %}
+            {% endif %}
           />
           <label for="vi_silla">Silla de ruedas</label>
         </div>
         <div class="check">
           <input
             type="checkbox"
-            name="vi_camilla"
+            name="vi_camilla_check"
             id="vi_camilla"
-            {%
-            if
-            registro.Icamilla
-            %}
+            {% if registro.vi_camilla_check %}
             checked
-            {%
-            endif
-            %}
+            {% endif %}
           />
           <label for="vi_camilla">Camilla</label>
         </div>
@@ -603,64 +547,44 @@ content %}
         <div class="check">
           <input
             type="checkbox"
-            name="vf_independiente"
+            name="vf_independiente_check"
             id="vf_independiente"
-            {%
-            if
-            registro.Findependiente
-            %}
+            {% if registro.vf_independiente_check %}
             checked
-            {%
-            endif
-            %}
+            {% endif %}
           />
           <label for="vf_independiente">Independiente</label>
         </div>
         <div class="check">
           <input
             type="checkbox"
-            name="vf_ayuda"
+            name="vf_ayuda_check"
             id="vf_ayuda"
-            {%
-            if
-            registro.Fayuda
-            %}
+            {% if registro.vf_ayuda_check %}
             checked
-            {%
-            endif
-            %}
+            {% endif %}
           />
           <label for="vf_ayuda">Con ayuda</label>
         </div>
         <div class="check">
           <input
             type="checkbox"
-            name="vf_silla"
+            name="vf_silla_check"
             id="vf_silla"
-            {%
-            if
-            registro.Fsilla
-            %}
+            {% if registro.vf_silla_check %}
             checked
-            {%
-            endif
-            %}
+            {% endif %}
           />
           <label for="vf_silla">Silla de ruedas</label>
         </div>
         <div class="check">
           <input
             type="checkbox"
-            name="vf_camilla"
+            name="vf_camilla_check"
             id="vf_camilla"
-            {%
-            if
-            registro.Fcamilla
-            %}
+            {% if registro.vf_camilla_check %}
             checked
-            {%
-            endif
-            %}
+            {% endif %}
           />
           <label for="vf_camilla">Camilla</label>
         </div>
@@ -670,48 +594,40 @@ content %}
     <div class="dolor">
       <div class="input">
         <label for="d_sitio">Sitio</label>
-        <textarea name="d_sitio" id="d_sitio">{{registro.Dsitio}}</textarea>
+        <textarea name="dolor_sitio" id="d_sitio">{{registro.dolor_sitio}}</textarea>
       </div>
       <div class="input">
         <label for="irradiacion">Irradiacion</label>
-        <textarea name="irradiacion" id="irradiacion">
-        {{registro.irradiacion}}</textarea
-        >
+        <textarea name="dolor_irradiacion" id="irradiacion"
+        >{{registro.dolor_irradiacion}}</textarea>
       </div>
       <div class="input">
         <label for="inicial">Inicial</label>
-        <textarea name="inicial" id="inicial">{{registro.Dinicial}}</textarea>
+        <textarea name="dolor_inicial" id="inicial">{{registro.dolor_inicial}}</textarea>
       </div>
       <div class="input">
         <label for="final">Final</label>
-        <textarea name="final" id="final">{{registro.Dfinal}}</textarea>
+        <textarea name="dolor_final" id="final">{{registro.dolor_final}}</textarea>
       </div>
       <div class="input">
         <label for="d_observaciones">Observaciones</label>
-        <textarea name="d_observaciones" id="d_observaciones">
-      {{registro.Dobservaciones}}</textarea
-        >
+        <textarea name="dolor_observaciones" id="dolor_observaciones"
+        >{{registro.dolor_observaciones}}</textarea>
       </div>
       <img src="{{url_for('static',filename='assets/img.png')}}" />
     </div>
   </div>
   <div class="ultimos">
     <h3>Antecedentes en fisioterapia</h3>
-    <textarea name="antecedentes" id="antecedentes">
-    {{registro.antecedentes}}</textarea
-    >
+    <textarea name="antecedentes" id="antecedentes">{{registro.antecedentes}}</textarea>
     <h3>Motivo de la consulta</h3>
     <textarea name="motivo" id="motivo">{{registro.motivo}}</textarea>
     <h3>Resumen del relato del paciente</h3>
-    <textarea name="relato" id="relato">{{registro.resumen}}</textarea>
+    <textarea name="resumen" id="resumen">{{registro.resumen}}</textarea>
     <h3>Diagnostico fisioterapeutico</h3>
-    <textarea name="diagnostico" id="diagnostico">
-    {{registro.diagnostico}}</textarea
-    >
+    <textarea name="diagnostico" id="diagnostico">{{registro.diagnostico}}</textarea>
     <h3>Observaciones</h3>
-    <textarea name="observaciones" id="observaciones">
-    {{registro.observaciones}}</textarea
-    >
+    <textarea name="observaciones" id="observaciones">{{registro.observaciones}}</textarea>
     <h3>Plan de tratamiento</h3>
     <textarea name="plan" id="plan">{{registro.plan}}</textarea>
     <h3>Apendices</h3>

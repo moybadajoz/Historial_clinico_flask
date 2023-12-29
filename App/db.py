@@ -2,7 +2,7 @@ import sqlite3
 import click
 from flask import current_app, g
 from flask.cli import with_appcontext
-from .schema import instructions, migration_instructions
+from .schema import instructions, migration_instructions, insert_query
 
 
 def get_db():
@@ -41,12 +41,17 @@ def init_db_command():
 def migrate(db_in):
     db, c = get_db()
     dbin = sqlite3.connect(db_in)
+    dbin.row_factory = sqlite3.Row
     cin = dbin.cursor()
     registros = cin.execute(migration_instructions['select']).fetchall()
     dbin.close()
+    from .utils import migrate_convert
     for registro in registros:
-        c.execute(migration_instructions['insert'], registro)
+        registro = dict(registro)
+        values = migrate_convert(registro)
+        c.execute(insert_query, values)
         db.commit()
+
     db.close()
 
 

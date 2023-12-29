@@ -12,16 +12,31 @@ block content %}
   </tr>
   {% for registro in registros %}
   <tr>
-    <td>{{registro.nombre}}</td>
-    <td>{{registro.fecha}}</td>
-    <td>
+    <td>{{registro.datos_nombre}}</td>
+    <td>{{registro.datos_fecha}}</td>
+    <td class='actions'>
       <a class="button edit" href="{{url_for('reg.edit', id=registro.id)}}"
-        >Editar</a
-      >
-      <a class="button delete" href="#">Eliminar</a>
+        >Editar</a>
+      <button class="delete" onclick="delete_card({{registro.id}})">Eliminar</button>
     </td>
   </tr>
   {% endfor %}
 </table>
-
+<div class="alert-box">
+  <div class="card">
+    <div class="title">
+      <b>Eliminar registro</b>
+    </div>
+    <div class="content">
+      Esta accion no se podra deshacer. <br>
+      Desea continuar?
+    </div>
+    <div class="actions">
+      <button class='btn-cancel' onclick="close_card()">Cancel</button>
+      <button class="delete" onclick='delete_()'>Aceptar</button>
+    </div>
+  </div>
+</div>
+<script src="{{url_for('static', filename='js/script.js')}}">
+</script>
 {% endblock content %}
