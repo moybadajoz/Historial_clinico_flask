@@ -7,11 +7,24 @@ bp = Blueprint('reg', __name__)
 
 
 @bp.route('/')
+def main():
+    return redirect(url_for('reg.home'))
+
+
+@bp.route('/home', methods=['GET'])
 def home():
     db, c = get_db()
-    c.execute(
-        'SELECT id, datos_nombre, datos_fecha FROM historial'
-    )
+    print(request.args.get('search'))
+    if (search := request.args.get('search', None)):
+        c.execute('''
+                SELECT id, datos_nombre, datos_fecha FROM historial 
+                WHERE datos_nombre LIKE ?
+                ORDER BY updated_at DESC
+                ''', ('%'+search+'%',))
+    else:
+        c.execute(
+            'SELECT id, datos_nombre, datos_fecha FROM historial ORDER BY updated_at DESC')
+
     registros = c.fetchall()
     return render_template('home.html', registros=registros)
 

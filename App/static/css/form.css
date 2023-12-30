@@ -227,6 +227,7 @@ input[type=checkbox] {
     border: none;
     color: #fff;
     width: 100px;
+    height: 42px;
 }
 
 .change textarea{

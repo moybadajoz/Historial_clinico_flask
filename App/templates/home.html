@@ -1,7 +1,12 @@
 {% extends "base.html" %} {% block title %}Pacientes{% endblock title %} {%
 block content %}
 <div class="nav">
-  <input class="search" type="text" placeholder="Buscar" />
+  <form action="" method="get">
+    <input name="search" autocomplete='off' class="search" type="text" placeholder="Buscar"/>
+    <button type="submit"><span class="material-symbols-outlined">
+      search
+      </span></button>
+  </form>
   <a href="{{url_for('reg.nuevo')}}" class="button new">Nuevo</a>
 </div>
 <table>

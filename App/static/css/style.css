@@ -7,6 +7,14 @@ body {
     font-size: 1.2em;
 }
 
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+}
+
 .page {
     background-color: #fff;
     margin: 20px 10% 20px 10%;
@@ -99,6 +107,17 @@ button {
     background-color: green;
 }
 
+.nav form {
+    display: flex;
+    align-items: center;
+}
+
+.nav form button {
+    color: #444;
+    background-color: rgba(0, 0, 0, 0.0);
+    width: auto;
+}
+
 .search {
     background-color: #eee;
     border: 1px solid;
@@ -106,6 +125,7 @@ button {
     border-radius: 30px;
     padding-left: 10px;
 }
+
 
 .nav {
     margin-bottom: 15px;
